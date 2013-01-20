@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 /**
  * The board to hold the ships
- * The default size is 11x11 which represents the 1:10 and A:J
+ * The default size is 10x10 which represents the 1:10 and A:J
  * and leaves column zero and row zero blank
  *
  * S represents a ship
@@ -26,19 +26,26 @@ public class Board {
         this.boardWidth = boardHeight+1;
         this.boardHeight = boardWidth+1;
         this.board = new char[this.boardHeight][this.boardWidth];
+        this.numShips = 0;
         boardInit();
     }
 
-    /* This assumes an NxM board (i.e. rows are equal lengths)
-     * */
+    /* This assumes a blank (no ships) NxM board (i.e. rows are equal lengths) */
     public Board(char[][] board) {
         this.boardWidth = board.length;
         this.boardHeight = board[0].length;
         this.board = board;
+        this.numShips = 0;
         boardInit();
     }
 
     private void boardInit() {
+        /* clear the zero'th row and column */
+        for(int i = 0; i < this.boardHeight; i++)
+            this.board[i][0] = '';
+        for(int i = 0; i < this.boardWidth; i++)
+            this.board[0][i] = '';
+
         for(int i = 1; i < this.boardHeight; i++) {
             for(int j = 1; j < this.boardWidth; j++) {
                 board[i][j] = '*';
