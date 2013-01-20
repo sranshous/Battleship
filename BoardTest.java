@@ -13,6 +13,9 @@ public class BoardTest {
         System.out.println("---- Trying to add ship of length 3 to 0, 7 h ----");
         System.out.println(b1.placeShip(0, 7, 3, 'h')); // should fail because row cannot be 0
 
+        System.out.println("---- Trying to add ship of length 3 to 0, 7 V ----");
+        System.out.println(b1.placeShip(-1, 9, 2, 'V')); // should fail because row cannot be -1
+
         System.out.println("---- Trying to add ship of length 3 to 1, 7 h ----");
         System.out.println(b1.placeShip(1, 7, 3, 'h')); // should pass
 
@@ -35,6 +38,7 @@ public class BoardTest {
         System.out.println("Shooting 7, 3: " + b1.checkShot(7, 3)); // should hit
         System.out.println("Shooting 1, 9: " + b1.checkShot(1, 9)); // should hit
         System.out.println("Shooting -1, 3: " + b1.checkShot(-1, 3)); // should fail
+        System.out.println("Shooting 8, -1: " + b1.checkShot(8, -1)); // should fail
         System.out.println("Shooting 5, 5: " + b1.checkShot(5, 5)); // should fail
         System.out.println("Shooting 3, 3: " + b1.checkShot(3, 3)); // should hit
         System.out.println("Shooting 0, 8: " + b1.checkShot(0, 8)); // should fail
@@ -50,9 +54,9 @@ public class BoardTest {
          * and check again */
         System.out.println("Shooting 1, 7: " + b1.checkShot(1, 7)); // should hit
         System.out.println("Shooting 1, 8: " + b1.checkShot(1, 8)); // should hit
-        System.out.println("Shooting 1, 8: " + b1.checkShot(4, 3)); // should hit
-        System.out.println("Shooting 1, 8: " + b1.checkShot(5, 3)); // should hit
-        System.out.println("Shooting 1, 8: " + b1.checkShot(6, 3)); // should hit
+        System.out.println("Shooting 4, 3: " + b1.checkShot(4, 3)); // should hit
+        System.out.println("Shooting 5, 3: " + b1.checkShot(5, 3)); // should hit
+        System.out.println("Shooting 6, 3: " + b1.checkShot(6, 3)); // should hit
 
         System.out.println("\n---- No ships should be remaining ----");
         System.out.println("Board has ships: " + b1.hasShipsLeft());
