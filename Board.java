@@ -17,13 +17,15 @@ public class Board {
     private int numShips;
 
     public Board() {
-        this(11, 11);
+        this(10, 10);
     }
 
+    /* If we want a 10x10 board we create an 11x11 array so that we can omit
+     * row and column zero and just use 1:n and 1:m indicies */
     public Board(int boardHeight, int boardWidth) {
-        this.boardWidth = boardHeight;
-        this.boardHeight = boardWidth;
-        this.board = new char[boardHeight][boardWidth];
+        this.boardWidth = boardHeight+1;
+        this.boardHeight = boardWidth+1;
+        this.board = new char[this.boardHeight][this.boardWidth];
         boardInit();
     }
 
