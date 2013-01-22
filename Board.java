@@ -177,6 +177,14 @@ public class Board {
         return this.board;
     }
 
+    public int getBoardWidth() {
+        return this.boardWidth;
+    }
+
+    public int getBoardHeight() {
+        return this.boardHeight;
+    }
+
     public String toString() {
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < this.boardHeight; i++) {
