@@ -27,6 +27,8 @@ public class BoardTest {
 
         System.out.println("---- Trying to add ship of length 3 to 3, 0 h ----");
         System.out.println(b1.placeShip(3, 0, 3, 'h')); // should fail because col cannot be 0
+        System.out.println("---- Trying to add ship of length 2 to 9, 9 m ----");
+        System.out.println(b1.placeShip(3, 0, 3, 'm')); // should fail because m is not a valid orientation
         System.out.println("\n---- Board after trying to add the ships ----");
         System.out.println(b1);
 
