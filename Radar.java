@@ -120,6 +120,14 @@ public class Radar {
         return this.radar;
     }
 
+    public int getRadarWidth() {
+        return this.radarWidth;
+    }
+
+    public int getRadarHeight() {
+        return this.radarHeight;
+    }
+
     public String toString() {
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < this.radarHeight; i++) {
