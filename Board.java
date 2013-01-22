@@ -30,15 +30,6 @@ public class Board {
         boardInit();
     }
 
-    /* This assumes a blank (no ships) NxM board (i.e. rows are equal lengths) */
-    public Board(char[][] board) {
-        this.boardWidth = board.length;
-        this.boardHeight = board[0].length;
-        this.board = board;
-        this.numShips = 0;
-        boardInit();
-    }
-
     private void boardInit() {
         /* clear the zero'th row and column */
         this.board[0][0] = ' ';
