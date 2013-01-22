@@ -116,6 +116,10 @@ public class Radar {
         return this.radar[row][col];
     }
 
+    public char[][] getRadar() {
+        return this.radar;
+    }
+
     public String toString() {
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < this.radarHeight; i++) {
