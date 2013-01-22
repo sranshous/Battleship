@@ -173,6 +173,10 @@ public class Board {
         return this.numShips > 0;
     }
 
+    public char[][] getBoard() {
+        return this.board;
+    }
+
     public String toString() {
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < this.boardHeight; i++) {
