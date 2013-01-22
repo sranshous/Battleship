@@ -42,13 +42,13 @@ public class Board {
     private void boardInit() {
         /* clear the zero'th row and column */
         for(int i = 0; i < this.boardHeight; i++)
-            this.board[i][0] = '';
+            this.board[i][0] = ' ';
         for(int i = 0; i < this.boardWidth; i++)
-            this.board[0][i] = '';
+            this.board[0][i] = ' ';
 
         for(int i = 1; i < this.boardHeight; i++) {
             for(int j = 1; j < this.boardWidth; j++) {
-                board[i][j] = '*';
+                this.board[i][j] = '*';
             }
         }
     }
