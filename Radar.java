@@ -71,9 +71,9 @@ public class Radar {
         }
     }
 
-    /* returns true if the parameters are valid, false otherwise */
-    private boolean checkShotParams(int row, int col, char hitOrMiss) {
-        /* check if the coordinates initially make sense */
+    /* returns true if it is a valid location, false otherwise */
+    private boolean checkLocation(int row, int col) {
+        /* check if the coordinates are in the playable range */
         if(row < 1 || row > this.radarHeight) {
             System.err.println(String.format("Error: The row must be between 1 and %d", this.radarHeight-1));
             return false;
@@ -82,6 +82,16 @@ public class Radar {
             System.err.println(String.format("Error: The column must be between 1 and %d", this.radarWidth-1));
             return false;
         }
+
+        // Looks ok
+        return true;
+    }
+
+    /* returns true if the parameters are valid, false otherwise */
+    private boolean checkShotParams(int row, int col, char hitOrMiss) {
+        if(!checkLocation)
+            return false;
+
         /* is the hitOrMiss one we know? */
         else if(hitOrMiss != 'h' && hitOrMiss != 'H' && hitOrMiss != 'm' && hitOrMiss != 'M') {
             System.err.println(String.format("Error: Unrecognized his or miss value '%c'", hitOrMiss));
@@ -90,6 +100,13 @@ public class Radar {
 
         /* Everything looks good! */
         return true;
+    }
+
+    public char checkLocation(int row, int col) {
+        if(!checkLocation(row, col))
+            return false;
+
+        return this.radar[row][col];
     }
 
     public String toString() {
