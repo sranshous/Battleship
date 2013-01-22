@@ -89,7 +89,7 @@ public class Radar {
 
     /* returns true if the parameters are valid, false otherwise */
     private boolean checkShotParams(int row, int col, char hitOrMiss) {
-        if(!checkLocation)
+        if(!checkLocation(row, col))
             return false;
 
         /* is the hitOrMiss one we know? */
@@ -102,9 +102,9 @@ public class Radar {
         return true;
     }
 
-    public char checkLocation(int row, int col) {
+    public char getLocation(int row, int col) {
         if(!checkLocation(row, col))
-            return false;
+            return '\0';
 
         return this.radar[row][col];
     }

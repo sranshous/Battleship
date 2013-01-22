@@ -73,17 +73,15 @@ public class Board {
 
         /* We made it this far so everything must be ok, now place the ship */
         if(orientation == 'v' || orientation == 'V') {
-            for(int i = 0; i < shipSize; i++) {
+            for(int i = 0; i < shipSize; i++)
                 this.board[row+i][col] = 'S';
-            }
 
             numShips++;
             return true;
         }
         else { // don't need to check if it equals H because it has to if it passed the param check
-            for(int i = 0; i < shipSize; i++) {
+            for(int i = 0; i < shipSize; i++)
                 this.board[row][col+i] = 'S';
-            }
 
             numShips++;
             return true;
