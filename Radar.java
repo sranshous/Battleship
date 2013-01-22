@@ -74,11 +74,11 @@ public class Radar {
     /* returns true if it is a valid location, false otherwise */
     private boolean checkLocation(int row, int col) {
         /* check if the coordinates are in the playable range */
-        if(row < 1 || row > this.radarHeight) {
+        if(row < 1 || row > this.radarHeight-1) {
             System.err.println(String.format("Error: The row must be between 1 and %d", this.radarHeight-1));
             return false;
         }
-        else if(col < 1 || col > this.radarWidth) {
+        else if(col < 1 || col > this.radarWidth-1) {
             System.err.println(String.format("Error: The column must be between 1 and %d", this.radarWidth-1));
             return false;
         }
