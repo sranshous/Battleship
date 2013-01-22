@@ -102,6 +102,13 @@ public class Radar {
         return true;
     }
 
+    /**
+     * Returns the value stored in the radar at a given location
+     * @param row The row to check.
+     * @param col The column to check.
+     * @return Will return the character stored at that location if it is a
+     * valid spot, or the null character for any invalid locations.
+     */
     public char getLocation(int row, int col) {
         if(!checkLocation(row, col))
             return '\0';
