@@ -27,14 +27,6 @@ public class Radar {
         radarInit();
     }
 
-    /* This assumes a blank (no ships) NxM board (i.e. rows are equal lengths) */
-    public Radar(char[][] radar) {
-        this.radarWidth = radar.length;
-        this.radarHeight = radar[0].length;
-        this.radar = radar;
-        radarInit();
-    }
-
     private void radarInit() {
         /* clear the zero'th row and column */
         for(int i = 0; i < this.radarHeight; i++)

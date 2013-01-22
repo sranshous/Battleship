@@ -32,11 +32,10 @@ public class Board {
 
     private void boardInit() {
         /* clear the zero'th row and column */
-        this.board[0][0] = ' ';
-        for(int i = 1; i < this.boardHeight; i++)
-            this.board[i][0] = (char)(i+48);
-        for(int i = 1; i < this.boardWidth; i++)
-            this.board[0][i] = (char)(i+64);
+        for(int i = 0; i < this.boardHeight; i++)
+            this.board[i][0] = ' ';
+        for(int i = 0; i < this.boardWidth; i++)
+            this.board[0][i] = ' ';
 
         for(int i = 1; i < this.boardHeight; i++) {
             for(int j = 1; j < this.boardWidth; j++) {
