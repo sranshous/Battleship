@@ -1,7 +1,7 @@
-public class BoardTest {
+public class PlayerBoardTest {
     public static void main(String[] args) {
         System.out.println("---- Creating a default board ----");
-        Board b1 = new Board(); // default constructor test
+        PlayerBoard b1 = new PlayerBoard(); // default constructor test
         System.out.println("---- Printing the default board ----");
         System.out.println(b1);
 
