@@ -129,4 +129,29 @@ public class GameView {
         else
             return new Coordinate();
     }
+
+    public void displayBoard(Board board) {
+        char[][] playerBoard = board.getBoard();
+        StringBuilder sb = new StringBuilder();
+
+        /* Add the row of alphabet labels */
+        sb.append("  ");
+        for(int i = 1; i < playerBoard[0].length; i++)
+            sb.append(" " + (char)(i+64));
+
+        /* Start adding the rows of the board
+         * Start at 1 because we already did row 0 */
+        for(int i = 1; i < playerBoard.length; i++) {
+            if(i < 10)
+                sb.append(EOL + i + "  ");
+            else
+                sb.append(EOL + i + " ");
+            for(int j = 1; j < playerBoard[i].length; j++) {
+                sb.append(playerBoard[i][j] + " ");
+            }
+        }
+
+        sb.append(EOL);
+        System.out.println(sb.toString());
+    }
 }
