@@ -14,4 +14,8 @@ public class Coordinate {
         this.row = row;
         this.col = col;
     }
+
+    public String toString() {
+        return "Row: " + row + "\tCol: " + col;
+    }
 }
