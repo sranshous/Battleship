@@ -16,22 +16,22 @@ public class GameView {
 
     public void displayWelcome() {
         System.out.println(EOL + EOL +
-                           "**********************************" + EOL +
-                           "****  Welcome to BattleShip!  ****" + EOL +
-                           "**********************************" + EOL + EOL +
+                           "************************************************************" + EOL +
+                           "**************     Welcome to BattleShip!     **************" + EOL +
+                           "************************************************************" + EOL + EOL +
                            "This is a traditional game of BattleShip. The board has rows" + EOL +
                            "1 through 10 inclusive and columns A through J inclusive." + EOL + EOL +
                            "   A B C D E F G H I J" + EOL +
-                           "1" + EOL +
-                           "2" + EOL +
-                           "3" + EOL +
-                           "4" + EOL +
-                           "5" + EOL +
-                           "6" + EOL +
-                           "7" + EOL +
-                           "8" + EOL +
-                           "9" + EOL +
-                           "10" + EOL + EOL +
+                           "1  * * * * * * * * * *" + EOL +
+                           "2  * * * * * * * * * *" + EOL +
+                           "3  * * * * * * * * * *" + EOL +
+                           "4  * * * * * * * * * *" + EOL +
+                           "5  * * * * * * * * * *" + EOL +
+                           "6  * * * * * * * * * *" + EOL +
+                           "7  * * * * * * * * * *" + EOL +
+                           "8  * * * * * * * * * *" + EOL +
+                           "9  * * * * * * * * * *" + EOL +
+                           "10 * * * * * * * * * *" + EOL + EOL +
                            "A typical fire location is: row,col (e.g. 3,J)" + EOL +
                            "To display your radar, type \"radar\"" + EOL +
                            "To display your board, type \"board\"" + EOL + EOL);
@@ -107,7 +107,7 @@ public class GameView {
 
         /* Get the row from the input or return false with an error */
         try {
-            row = Integer.parseInt(tokens[0]);
+            row = Integer.parseInt(tokens[0].trim());
         }
         catch(NumberFormatException nfe) {
             throw new IllegalArgumentException();
@@ -130,22 +130,30 @@ public class GameView {
             return new Coordinate();
     }
 
+    /**
+     * Prints the given board (Radar or PlayerBoard) to the terminal.
+     * If we were going to use a GUI then separate printRadar and
+     * printPlayerBoard methods may be necessary. For ASCII art they're not.
+     * @param board A class that extends the abstract class Board
+     */
     public void displayBoard(Board board) {
         char[][] playerBoard = board.getBoard();
         StringBuilder sb = new StringBuilder();
 
         /* Add the row of alphabet labels */
-        sb.append("  ");
+        sb.append("  "); // top left corner is blank
         for(int i = 1; i < playerBoard[0].length; i++)
             sb.append(" " + (char)(i+64));
 
         /* Start adding the rows of the board
          * Start at 1 because we already did row 0 */
         for(int i = 1; i < playerBoard.length; i++) {
+            // extra padding for single digit #
             if(i < 10)
                 sb.append(EOL + i + "  ");
             else
                 sb.append(EOL + i + " ");
+
             for(int j = 1; j < playerBoard[i].length; j++) {
                 sb.append(playerBoard[i][j] + " ");
             }
