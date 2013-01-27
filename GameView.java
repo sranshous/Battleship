@@ -86,7 +86,7 @@ public class GameView {
 
         try {
             fireInput = this.br.readLine();
-            fireLocation = parseShot(fireInput);
+            fireLocation = parseLocation(fireInput);
         }
         catch(IOException ioe) {
             System.out.println(ioe.getMessage());
@@ -103,8 +103,8 @@ public class GameView {
     /* Parses the input string checking the bounds. Returns the Coordinate if
      * the input was valid, otherwise it returns the default Coordinate object
      * with -1,-1 */
-    private Coordinate parseShot(String fireInput) throws IllegalArgumentException {
-        String[] tokens = fireInput.split(",");
+    private Coordinate parseLocation(String locationInput) throws IllegalArgumentException {
+        String[] tokens = locationInput.split(",");
 
         /* Saves us from an ArrayIndexOutOfBoundsException */
         if(tokens.length != 2)
