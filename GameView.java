@@ -99,6 +99,31 @@ public class GameView {
         return fireLocation;
     }
 
+    public Coordinate getShipPlacement(int playerNum, Ship ship) {
+        Coordinate shipLocation = new Coordinate();
+
+        if(playerNum < 1 || playerNum > 2) {
+            System.err.println("Enter player 1 or 2");
+            return shipLocation;
+        }
+
+        System.out.println(String.format("Player %d, please input the row,col for your %s of size %d", playerNum, ship.name, ship.size));
+        String locationInput = "";
+
+        try {
+            locationInput = this.br.readLine();
+            shipLocation = parseLocation(locationInput);
+        }
+        catch(IOException ioe) {
+            System.out.println(ioe.getMessage());
+            ioe.printStackTrace();
+        }
+        catch(IllegalArgumentException iae) {
+            System.err.println("Invalid input. Please input coordinates as row,col");
+        }
+
+        return shipLocation;
+    }
 
     /* Parses the input string checking the bounds. Returns the Coordinate if
      * the input was valid, otherwise it returns the default Coordinate object
