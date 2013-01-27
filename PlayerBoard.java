@@ -108,11 +108,11 @@ public class PlayerBoard extends Board {
             return false;
         }
         /* will the ship fit on the board with that size and orientation? */
-        else if((orientation == 'h' || orientation == 'H') && (col + (shipSize-1) > this.boardWidth)) {
+        else if((orientation == 'h' || orientation == 'H') && (col + (shipSize-1) > this.boardWidth-1)) {
             System.err.println("Error: The ship does not fit on the board there");
             return false;
         }
-        else if((orientation == 'v' || orientation == 'V') && (row + (shipSize-1) > this.boardHeight)) {
+        else if((orientation == 'v' || orientation == 'V') && (row + (shipSize-1) > this.boardHeight-1)) {
             System.err.println("Error: The ship does not fit on the board there");
             return false;
         }
