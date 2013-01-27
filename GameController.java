@@ -78,8 +78,6 @@ public class GameController {
                 shipLocation = gv.getShipPlacement(playerNum, ship);
                 orientation = gv.getShipOrientation();
                 validSpot = this.playerBoards[playerNum].placeShip(shipLocation.row, shipLocation.col, ship.size, orientation);
-                /* Debug output */
-                System.out.println("" + shipLocation.row + " " + shipLocation.col + " " + orientation + " " + validSpot);
             }
         }
     }
