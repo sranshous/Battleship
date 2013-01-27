@@ -16,6 +16,9 @@ public class GameView {
         this.EOL = System.getProperty("line.separator");
     }
 
+    /**
+     * Prints the welcome message for our game of BattleShip
+     */
     public void displayWelcome() {
         System.out.println(EOL + EOL +
                            "************************************************************" + EOL +
@@ -45,7 +48,7 @@ public class GameView {
      * return -1 if there was an error.
      */
     public int getNumPlayers() {
-        System.out.println("Will there be 1 or 2 players?: ");
+        System.out.print("Will there be 1 or 2 players?: ");
         int numPlayers = -1;
 
         try {
@@ -99,6 +102,13 @@ public class GameView {
         return fireLocation;
     }
 
+    /**
+     * Prompts the user for the location of the ship passed in.
+     * @param playerNum The player who is placing the ship
+     * @param ship The ship that is the be placed
+     * @return Default coordinate (-1,-1) if there was an error, otherwise the
+     * location to place the ship
+     */
     public Coordinate getShipPlacement(int playerNum, Ship ship) {
         Coordinate shipLocation = new Coordinate();
 
@@ -107,7 +117,7 @@ public class GameView {
             return shipLocation;
         }
 
-        System.out.println(String.format("Player %d, please input the row,col for your %s of size %d", playerNum, ship.name, ship.size));
+        System.out.print(String.format("Player %d, please input the row,col for your %s of size %d: ", playerNum, ship.name, ship.size));
         String locationInput = "";
 
         try {
@@ -115,7 +125,7 @@ public class GameView {
             shipLocation = parseLocation(locationInput);
         }
         catch(IOException ioe) {
-            System.out.println(ioe.getMessage());
+            System.err.println(ioe.getMessage());
             ioe.printStackTrace();
         }
         catch(IllegalArgumentException iae) {
@@ -123,6 +133,35 @@ public class GameView {
         }
 
         return shipLocation;
+    }
+
+    /**
+     * Ask the user if this ship is to be horizontal or vertical
+     * @return 'h' or 'H' for horizontal placement, 'v' or 'V' for vertical.
+     * Will return the null character if an error occurs
+     */
+    public char getShipOrientation() {
+        System.out.println("Would you like the ship to be vertical or horizontal (where the coordinate you pick is the top or left respectively)");
+        System.out.print("\"h\" for horizontal \"v\" for vertical: ");
+
+        char orientation = '\0';
+
+        try {
+            String input = br.readLine();
+            if(input != null)
+                orientation = input.charAt(0);
+        }
+        catch(IOException ioe) {
+            System.err.println(ioe.getMessage());
+            ioe.printStackTrace();
+        }
+
+        if(orientation == 'v' || orientation == 'V' || orientation == 'h' || orientation == 'H')
+            return orientation;
+        else {
+            System.err.println("Please input either \"h\" or \"v\"");
+            return '\0';
+        }
     }
 
     /* Parses the input string checking the bounds. Returns the Coordinate if
