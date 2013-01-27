@@ -40,17 +40,21 @@ public class GameViewTest {
         /* Test the fire command */
         System.out.println("\n---- Testing the fire command ----");
         Coordinate c = null;
-        c = gv.fire(); // 2,J
+        c = gv.fire(1); // 2,J
         System.out.println("The coordinate was " + c);
-        c = gv.fire(); //  1,B
+        c = gv.fire(2); //  1,B
         System.out.println("The coordinate was " + c);
-        c = gv.fire(); // 8, E
+        c = gv.fire(1); // 8, E
         System.out.println("The coordinate was " + c);
-        c = gv.fire(); // 0,A
+        c = gv.fire(2); // 0,A
         System.out.println("The coordinate was " + c);
-        c = gv.fire(); // 11,G
+        c = gv.fire(1); // 11,G
         System.out.println("The coordinate was " + c);
-        c = gv.fire(); // -1,A
+        c = gv.fire(2); // -1,A
+        System.out.println("The coordinate was " + c);
+        c = gv.fire(3); // -1,A
+        System.out.println("The coordinate was " + c);
+        c = gv.fire(-1); // -1,A
         System.out.println("The coordinate was " + c);
     }
 }

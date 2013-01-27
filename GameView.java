@@ -1,5 +1,7 @@
 /**
  * This is the class to handle display and receiving input
+ * TODO: Change thrown exceptions to contain the specific error message and
+ * print that
  */
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -71,10 +73,16 @@ public class GameView {
      * -1,-1 if there was a problem, otherwise the values will be the location
      *  to shoot at.
      */
-    public Coordinate fire() {
-        System.out.print("Enter where you would like to fire (e.g. row,col): ");
-        String fireInput = "";
+    public Coordinate fire(int playerNum) {
         Coordinate fireLocation = new Coordinate();
+
+        if(playerNum < 1 || playerNum > 2) {
+            System.err.println("Enter player 1 or 2");
+            return fireLocation;
+        }
+
+        System.out.print(String.format("Player %d, please enter where you would like to fire (e.g. row,col): ", playerNum));
+        String fireInput = "";
 
         try {
             fireInput = this.br.readLine();
@@ -99,7 +107,7 @@ public class GameView {
         String[] tokens = fireInput.split(",");
 
         /* Saves us from an ArrayIndexOutOfBoundsException */
-        if(tokens.length < 2)
+        if(tokens.length != 2)
             throw new IllegalArgumentException();
 
         // woot autobox
@@ -122,6 +130,8 @@ public class GameView {
             col = columnChar - 64; // A -> 1, B -> 2, etc.
         else if(columnChar >= 97 && columnChar <= 106)
             col = columnChar - 96; // a -> 1, b -> 2, etc.
+        else
+            throw new IllegalArgumentException();
 
         /* row between 1:10 column between A:J */
         if(row >= 1 && row <= 10 && col >= 1 && col <= 10)
