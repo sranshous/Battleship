@@ -94,11 +94,11 @@ public class PlayerBoard extends Board {
      * returns false and prints an error message otherwise */
     private boolean checkAddShipParams(int row, int col, int shipSize, char orientation) {
         /* check if the coordinates initially make sense */
-        if(row < 1 || row > this.boardHeight) {
+        if(row < 1 || row > this.boardHeight-1) { // -1 since our 10x10 board is height and width 11
             System.err.println(String.format("Error: The row must be between 1 and %d", this.boardHeight-1));
             return false;
         }
-        else if(col < 1 || col > this.boardWidth) {
+        else if(col < 1 || col > this.boardWidth-1) { // -1 since our 10x10 board is height and width 11
             System.err.println(String.format("Error: The column must be between 1 and %d", this.boardWidth-1));
             return false;
         }
