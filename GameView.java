@@ -267,7 +267,7 @@ public class GameView {
     }
 
     public void showLastShot(int row, int col, char hitOrMiss) {
-        System.out.println(String.format("Your shot at %d,%c was a %s", row, col+48,
+        System.out.println(String.format("Your shot at %d,%c was a %s", row, col+64,
                     hitOrMiss == 'h' ? "hit! w00t!" : "miss. =("));
     }
 
