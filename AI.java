@@ -39,6 +39,7 @@ public class AI {
             col = RNG.nextInt(10) + 1;
         }
 
+        guessed[row][col] = true; // dont shoot there again
         return new Coordinate(row, col);
     }
 }
