@@ -164,7 +164,7 @@ public class PlayerBoard extends Board {
         /* Did they really shoot at the same spot again? */
         else if(this.board[row][col] == 'X' || this.board[row][col] == 'O') {
             /* do nothing, penalize them for their foolish double shot! */
-            return false;
+            return this.board[row][col] == 'X' ? true : false; // return whatever was already there
         }
         /* The must have missed then */
         else {
