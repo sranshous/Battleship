@@ -271,6 +271,11 @@ public class GameView {
                     hitOrMiss == 'h' ? "hit! w00t!" : "miss. =("));
     }
 
+    public void showLastAIShot(int row, int col, char hitOrMiss) {
+        System.out.println(String.format("The AI shot at %d,%c and %s", row, col+64,
+                    hitOrMiss == 'h' ? "hit." : "missed"));
+    }
+
     /**
      * Used to clear the terminal so the players cannot see each others board
      */

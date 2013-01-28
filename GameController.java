@@ -150,7 +150,55 @@ public class GameController {
     }
 
     private void playSinglePlayer() {
-        /* Put off until AI is created */
+        boolean playerOnesTurn = true; // could use a counter and do the % 2 trick but meh
+
+        while(playerBoards[0].hasShipsLeft() && playerBoards[1].hasShipsLeft()) {
+            if(playerOnesTurn) {
+                /* Display the options to the user and see if they want to
+                 * display the board or radar, or if they want to fire */
+                char playerOption = 'z';
+                while(playerOption != 'f') {
+                    playerOption = gv.getPlayerOption(PLAYER_ONE);
+
+                    if(playerOption == 'b')
+                        this.gv.displayBoard(playerBoards[PLAYER_ONE_BOARD]);
+                    else if(playerOption == 'r')
+                        this.gv.displayBoard(playerRadars[PLAYER_ONE_BOARD]);
+                }
+
+                Coordinate shotLoc = new Coordinate();
+
+                /* Loop til we get a valid shot from the user */
+                while(shotLoc.row < 1 || shotLoc.row > 10 || shotLoc.col < 1 || shotLoc.col > 10) {
+                    shotLoc = this.gv.fire(PLAYER_ONE);
+                }
+
+                boolean shotHit = this.playerBoards[PLAYER_TWO_BOARD].checkShot(shotLoc.row, shotLoc.col);
+                char hitOrMiss = shotHit ? 'h' : 'm'; // 'h' if hit 'm' if miss
+                this.playerRadars[PLAYER_ONE_BOARD].markRadar(shotLoc.row, shotLoc.col, hitOrMiss);
+                this.gv.showLastShot(shotLoc.row, shotLoc.col, hitOrMiss);
+            }
+            else { // AI goes
+                Coordinate shotLoc = new Coordinate();
+
+                /* Loop til we get a valid shot from the user */
+                while(shotLoc.row < 1 || shotLoc.row > 10 || shotLoc.col < 1 || shotLoc.col > 10) {
+                    shotLoc = this.singlePlayerAI.fire();
+                }
+
+                boolean shotHit = this.playerBoards[PLAYER_ONE_BOARD].checkShot(shotLoc.row, shotLoc.col);
+                char hitOrMiss = shotHit ? 'h' : 'm'; // 'h' if hit 'm' if miss
+                this.playerRadars[AI_BOARD].markRadar(shotLoc.row, shotLoc.col, hitOrMiss);
+                this.gv.showLastAIShot(shotLoc.row, shotLoc.col, hitOrMiss);
+            }
+
+            /* If it was player ones turn now it is player twos. If it was player twos
+             * turn then it is not player ones. */
+            playerOnesTurn = playerOnesTurn ? false : true;
+        }
+
+        int winner = playerBoards[0].hasShipsLeft() ? 1 : 2;
+        System.out.println(String.format("Congratulations player %d you win! Thank you for playing Battleship.", winner));
     }
 
     private void playTwoPlayer() {
