@@ -79,7 +79,6 @@ public class PlayerBoard extends Board {
     private boolean spotTaken(int row, int col, int shipSize, char orientation) {
         /* if you wanted this could easily be extended to return or print the
          * first index X,Y where there was a conflict */
-        System.out.println("row:"+row+" "+"col:"+col+" "+"shipsize:"+shipSize+" "+"orientation:"+orientation);
         for(int i = 0; i < shipSize; i++) {
             if(orientation == 'h' || orientation == 'H') { // horizontal
                 if(this.board[row][col+i] != '*') {

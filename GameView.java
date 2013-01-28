@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class GameView {
-    private BufferedReader br;
-    private String EOL;
+    private final BufferedReader br;
+    private final String EOL;
 
     public GameView() {
         this.br = new BufferedReader(new InputStreamReader(System.in));
@@ -156,8 +156,10 @@ public class GameView {
             ioe.printStackTrace();
         }
 
-        if(orientation == 'v' || orientation == 'V' || orientation == 'h' || orientation == 'H')
+        if(orientation == 'v' || orientation == 'V' || orientation == 'h' || orientation == 'H') {
+            System.out.println(); // for spacing looks in the game play
             return orientation;
+        }
         else {
             System.err.println("Please input either \"h\" or \"v\"");
             return '\0';
@@ -204,6 +206,33 @@ public class GameView {
             return new Coordinate();
     }
 
+    public char getPlayerOption(int playerNum) {
+        System.out.print(String.format("Player %d, please enter fire, board, or radar: ", playerNum));
+        String option = "";
+        char returnOption = 'z';
+
+        try {
+            option = br.readLine().trim();
+            if(option != null) {
+                if(option.equals("board"))
+                    returnOption = 'b';
+                else if(option.equals("radar"))
+                    returnOption = 'r';
+                else if(option.equals("fire"))
+                    returnOption = 'f';
+                else {
+                    System.err.println("Invalid option. Options are: fire, board, radar");
+                }
+            }
+        }
+        catch(IOException ioe) {
+            System.out.println(ioe.getMessage());
+            ioe.printStackTrace();
+        }
+
+        return returnOption;
+    }
+
     /**
      * Prints the given board (Radar or PlayerBoard) to the terminal.
      * If we were going to use a GUI then separate printRadar and
@@ -235,5 +264,21 @@ public class GameView {
 
         sb.append(EOL);
         System.out.println(sb.toString());
+    }
+
+    public void showLastShot(int row, int col, char hitOrMiss) {
+        System.out.println(String.format("Your shot at %d,%c was a %s", row, col+48,
+                    hitOrMiss == 'h' ? "hit! w00t!" : "miss. =("));
+    }
+
+    /**
+     * Used to clear the terminal so the players cannot see each others board
+     */
+    public void clearScreen() {
+        System.out.println("Clearing the screen" + EOL + EOL + EOL + EOL + EOL +
+               EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL +
+               EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL +
+               EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL +
+               EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL + EOL);
     }
 }
