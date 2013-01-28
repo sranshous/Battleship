@@ -6,7 +6,5 @@ public class Battleship {
         GameController gc = new GameController();
         gc.gameSetup();
         gc.play();
-        System.out.println();
-        System.out.println("Thank you for playing Battleship.");
     }
 }

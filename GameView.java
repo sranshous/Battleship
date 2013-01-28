@@ -148,7 +148,7 @@ public class GameView {
 
         try {
             String input = br.readLine();
-            if(input != null)
+            if(input != null && input.length() > 0)
                 orientation = input.charAt(0);
         }
         catch(IOException ioe) {
