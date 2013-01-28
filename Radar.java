@@ -83,7 +83,7 @@ public class Radar extends Board {
 
         /* is the hitOrMiss one we know? */
         else if(hitOrMiss != 'h' && hitOrMiss != 'H' && hitOrMiss != 'm' && hitOrMiss != 'M') {
-            System.err.println(String.format("Error: Unrecognized his or miss value '%c'", hitOrMiss));
+            System.err.println(String.format("Error: Unrecognized hit or miss value '%c'", hitOrMiss));
             return false;
         }
 

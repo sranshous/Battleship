@@ -15,7 +15,6 @@ public class GameController {
     private final HashMap<Integer, Ship> ships;
     private final int PLAYER_ONE = 1;
     private final int PLAYER_TWO = 2;
-    private final int AI = 2;
 
     /* This is required because if we access index PLAYER_TWO in the
      * playerBoards or playerRadars array we will get an
