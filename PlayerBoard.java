@@ -11,6 +11,8 @@ import java.util.Arrays;
  * * represents an unused space
  */
 public class PlayerBoard extends Board {
+    /* This is not the actual number of ships. Instead it is the number of
+     * cells that have an 'S' in them. This player loses when this equals 0 */
     private int numShips;
 
     public PlayerBoard() {
@@ -64,14 +66,14 @@ public class PlayerBoard extends Board {
             for(int i = 0; i < shipSize; i++)
                 this.board[row+i][col] = 'S';
 
-            numShips++;
+            numShips += shipSize;
             return true;
         }
         else { // don't need to check if it equals H because it has to if it passed the param check
             for(int i = 0; i < shipSize; i++)
                 this.board[row][col+i] = 'S';
 
-            numShips++;
+            numShips += shipSize;
             return true;
         }
     }
@@ -151,15 +153,7 @@ public class PlayerBoard extends Board {
         /* We have a hit! */
         if(this.board[row][col] == 'S') {
             this.board[row][col] = 'X';
-
-            /* check if this was the last part of a ship, if so decrement the
-             * number of ships left */
-            if((row+1 < this.boardHeight) && this.board[row+1][col] != 'S' &&
-               (col+1 < this.boardWidth)  && this.board[row][col+1] != 'S' &&
-               (row-1 > 0)                && this.board[row-1][col] != 'S' &&
-               (col-1 > 0)                && this.board[row][col-1] != 'S') {
-               numShips--;
-            }
+            this.numShips--;
 
             return true;
         }
