@@ -154,8 +154,10 @@ public class PlayerBoard extends Board {
 
             /* check if this was the last part of a ship, if so decrement the
              * number of ships left */
-            if(this.board[row+1][col] != 'S' && this.board[row][col+1] != 'S' &&
-               this.board[row-1][col] != 'S' && this.board[row][col-1] != 'S') {
+            if((row+1 < this.boardHeight) && this.board[row+1][col] != 'S' &&
+               (col+1 < this.boardWidth)  && this.board[row][col+1] != 'S' &&
+               (row-1 > 0)                && this.board[row-1][col] != 'S' &&
+               (col-1 > 0)                && this.board[row][col-1] != 'S') {
                numShips--;
             }
 
