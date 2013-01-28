@@ -51,12 +51,12 @@ public class PlayerBoard extends Board {
      * if there was an error of some nature. An error message will be printed.
      */
 
-    public boolean placeShip(int row, int col, int shipSize, char orientation) {
+    public boolean placeShip(int row, int col, int shipSize, char orientation, boolean isAI) {
         /* validate the input values before adding the ship */
-        if(!checkAddShipParams(row, col, shipSize, orientation))
+        if(!checkAddShipParams(row, col, shipSize, orientation, isAI))
             return false;
         /* if someone is in the spot already we can't put another ship there */
-        else if(spotTaken(row, col, shipSize, orientation))
+        else if(spotTaken(row, col, shipSize, orientation, isAI))
             return false;
 
         /* We made it this far so everything must be ok, now place the ship */
@@ -76,19 +76,23 @@ public class PlayerBoard extends Board {
         }
     }
 
-    private boolean spotTaken(int row, int col, int shipSize, char orientation) {
+    private boolean spotTaken(int row, int col, int shipSize, char orientation, boolean isAI) {
         /* if you wanted this could easily be extended to return or print the
          * first index X,Y where there was a conflict */
         for(int i = 0; i < shipSize; i++) {
             if(orientation == 'h' || orientation == 'H') { // horizontal
                 if(this.board[row][col+i] != '*') {
-                    System.err.println(String.format("Error: There is already part of a ship at ship at %d, %d", row, col+i));
+                    /* Don't print messages for AI errors because the single
+                     * player could then learn the AI positions */
+                    if(!isAI)
+                        System.err.println(String.format("Error: There is already part of a ship at ship at %d, %d", row, col+i));
                     return true;
                 }
             }
             else { // vertical
                 if(this.board[row+i][col] != '*') {
-                    System.err.println(String.format("Error: There is already part of a ship at ship at %d, %d", row, col+i));
+                    if(!isAI)
+                        System.err.println(String.format("Error: There is already part of a ship at ship at %d, %d", row, col+i));
                     return true;
                 }
             }
@@ -99,28 +103,33 @@ public class PlayerBoard extends Board {
 
     /* returns true if the ship fits and everything looks ok
      * returns false and prints an error message otherwise */
-    private boolean checkAddShipParams(int row, int col, int shipSize, char orientation) {
+    private boolean checkAddShipParams(int row, int col, int shipSize, char orientation, boolean isAI) {
         /* check if the coordinates initially make sense */
         if(row < 1 || row > this.boardHeight-1) { // -1 since our 10x10 board is height and width 11
-            System.err.println(String.format("Error: The row must be between 1 and %d", this.boardHeight-1));
+            if(!isAI)
+                System.err.println(String.format("Error: The row must be between 1 and %d", this.boardHeight-1));
             return false;
         }
         else if(col < 1 || col > this.boardWidth-1) { // -1 since our 10x10 board is height and width 11
-            System.err.println(String.format("Error: The column must be between 1 and %d", this.boardWidth-1));
+            if(!isAI)
+                System.err.println(String.format("Error: The column must be between 1 and %d", this.boardWidth-1));
             return false;
         }
         /* is the orientation one we know? */
         else if(orientation != 'h' && orientation != 'H' && orientation != 'v' && orientation != 'V') {
-            System.err.println(String.format("Error: Unrecognized orientation '%c'", orientation));
+            if(!isAI)
+                System.err.println(String.format("Error: Unrecognized orientation '%c'", orientation));
             return false;
         }
         /* will the ship fit on the board with that size and orientation? */
         else if((orientation == 'h' || orientation == 'H') && (col + (shipSize-1) > this.boardWidth-1)) {
-            System.err.println("Error: The ship does not fit on the board there");
+            if(!isAI)
+                System.err.println("Error: The ship does not fit on the board there");
             return false;
         }
         else if((orientation == 'v' || orientation == 'V') && (row + (shipSize-1) > this.boardHeight-1)) {
-            System.err.println("Error: The ship does not fit on the board there");
+            if(!isAI)
+                System.err.println("Error: The ship does not fit on the board there");
             return false;
         }
 

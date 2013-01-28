@@ -3,10 +3,10 @@ public class GameViewTest {
         /* Create a PlayerBoard and place some ships */
         System.out.println("---- Creating a Board and placing ships ----");
         PlayerBoard b = new PlayerBoard();
-        b.placeShip(3, 3, 3, 'h');
-        b.placeShip(5, 9, 2, 'v');
-        b.placeShip(1, 7, 4, 'h');
-        b.placeShip(2, 6, 5, 'h');
+        b.placeShip(3, 3, 3, 'h', false);
+        b.placeShip(5, 9, 2, 'v', false);
+        b.placeShip(1, 7, 4, 'h', false);
+        b.placeShip(2, 6, 5, 'h', false);
 
         /* Create a Radar and make some marks */
         System.out.println("\n---- Creating a Radar and marking ----");

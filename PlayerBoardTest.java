@@ -11,24 +11,26 @@ public class PlayerBoardTest {
         /* Test adding ships */
         System.out.println("\n---- Adding ships to the board ----");
         System.out.println("---- Trying to add ship of length 3 to 0, 7 h ----");
-        System.out.println(b1.placeShip(0, 7, 3, 'h')); // should fail because row cannot be 0
+        System.out.println(b1.placeShip(0, 7, 3, 'h', false)); // should fail because row cannot be 0
 
         System.out.println("---- Trying to add ship of length 3 to 0, 7 V ----");
-        System.out.println(b1.placeShip(-1, 9, 2, 'V')); // should fail because row cannot be -1
+        System.out.println(b1.placeShip(-1, 9, 2, 'V', false)); // should fail because row cannot be -1
 
         System.out.println("---- Trying to add ship of length 3 to 1, 7 h ----");
-        System.out.println(b1.placeShip(1, 7, 3, 'h')); // should pass
+        System.out.println(b1.placeShip(1, 7, 3, 'h', false)); // should pass
 
         System.out.println("---- Trying to add ship of length 5 to 3, 3 v ----");
-        System.out.println(b1.placeShip(3, 3, 5, 'v')); // should pass
+        System.out.println(b1.placeShip(3, 3, 5, 'v', false)); // should pass
 
         System.out.println("---- Trying to add ship of length 3 to 6, 1 H ----");
-        System.out.println(b1.placeShip(6, 1, 3, 'H')); // should fail because ship at 3,3
+        System.out.println(b1.placeShip(6, 1, 3, 'H', false)); // should fail because ship at 3,3
 
         System.out.println("---- Trying to add ship of length 3 to 3, 0 h ----");
-        System.out.println(b1.placeShip(3, 0, 3, 'h')); // should fail because col cannot be 0
+        System.out.println(b1.placeShip(3, 0, 3, 'h', false)); // should fail because col cannot be 0
+
         System.out.println("---- Trying to add ship of length 2 to 9, 9 m ----");
-        System.out.println(b1.placeShip(3, 0, 3, 'm')); // should fail because m is not a valid orientation
+        System.out.println(b1.placeShip(3, 0, 3, 'm', false)); // should fail because m is not a valid orientation
+
         System.out.println("\n---- Board after trying to add the ships ----");
         System.out.println(b1);
 

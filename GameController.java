@@ -98,7 +98,7 @@ public class GameController {
                   shipLocation.col < 1 || shipLocation.col > 10 || !validSpot) {
                 shipLocation = gv.getShipPlacement(playerNum, ship);
                 orientation = gv.getShipOrientation();
-                validSpot = this.playerBoards[boardNum].placeShip(shipLocation.row, shipLocation.col, ship.size, orientation);
+                validSpot = this.playerBoards[boardNum].placeShip(shipLocation.row, shipLocation.col, ship.size, orientation, false);
             }
         }
 
@@ -121,7 +121,7 @@ public class GameController {
                   shipLocation.col < 1 || shipLocation.col > 10 || !validSpot) {
                 shipLocation = singlePlayerAI.getShipPlacement();
                 orientation = singlePlayerAI.getShipOrientation();
-                validSpot = this.playerBoards[AI_BOARD].placeShip(shipLocation.row, shipLocation.col, ship.size, orientation);
+                validSpot = this.playerBoards[AI_BOARD].placeShip(shipLocation.row, shipLocation.col, ship.size, orientation, true);
             }
         }
     }
